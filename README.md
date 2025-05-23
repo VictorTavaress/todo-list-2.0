@@ -1,7 +1,3 @@
-Claro! Aqui está um **README.md** completo, detalhando todas as funcionalidades, arquitetura, requisitos e instruções de uso do seu projeto, além de uma checagem de conformidade com o desafio.
-
----
-
 # Kanban Todo App
 
 Este projeto é uma aplicação **fullstack** para cadastro, listagem e gerenciamento de tarefas, desenvolvida como desafio técnico para vaga de desenvolvedor pleno.  
