@@ -5,6 +5,9 @@ O sistema é composto por um frontend em **React** (com Vite e MUI) e um backend
 
 ---
 
+![image](https://github.com/user-attachments/assets/ea1d35da-d322-4b7a-a1c9-8a3481988a4a)
+
+
 ## Funcionalidades
 
 - **Cadastro de tarefas**: Crie tarefas informando descrição, responsável, status e cor.
