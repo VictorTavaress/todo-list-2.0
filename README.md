@@ -64,7 +64,7 @@ https://github.com/user-attachments/assets/21ea93ae-12c7-4de5-a3b9-44f568e49948
 ### 1. **Clone o repositório**
 
 ```bash
-git clone https://github.com/seu-usuario/kanban-todo.git
+git clone https://github.com/VictorTavaress/kanban-todo.git
 cd kanban-todo
 ```
 
@@ -87,7 +87,7 @@ npm install
 #### c) Inicie o servidor
 
 ```bash
-npm start
+npm run dev
 ```
 O backend estará disponível em `http://localhost:8085`.
 
@@ -116,7 +116,7 @@ O frontend estará disponível em `http://localhost:5173` (ou porta informada pe
 No diretório do frontend:
 
 ```bash
-npm run test
+npm test
 ```
 
 Os testes cobrem os principais componentes e funcionalidades do sistema.
