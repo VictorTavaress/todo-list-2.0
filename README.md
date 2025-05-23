@@ -1,6 +1,6 @@
 # Kanban Todo App
 
-Este projeto é uma aplicação **fullstack** para cadastro, listagem e gerenciamento de tarefas, desenvolvida como desafio técnico para vaga de desenvolvedor pleno.  
+Este projeto é uma aplicação para cadastro, listagem e gerenciamento de tarefas, desenvolvida como desafio técnico para vaga de desenvolvedor pleno.  
 O sistema é composto por um frontend em **React** (com Vite e MUI) e um backend em **Node.js 20** (Express), com persistência de dados no **Firestore**.
 
 ---
@@ -32,6 +32,8 @@ O sistema é composto por um frontend em **React** (com Vite e MUI) e um backend
 
 1. **Cadastrar tarefas**: O sistema permite cadastrar tarefas via frontend e via endpoint `/insert-tasks`.
 2. **Exibir todos os dados**: Todos os campos das tarefas são exibidos no frontend e retornados pelo endpoint `/get-tasks`.
+3. **Editar tarefas**: Via frontend e endpoint `/update-task/:id`.
+4. **Excluir tarefas**: Via frontend e endpoint `/delete-task/:id`.
 
 ### Não Funcionais
 
@@ -40,9 +42,11 @@ O sistema é composto por um frontend em **React** (com Vite e MUI) e um backend
 3. **Servidor Node 20, Express, Javascript**: ✔️
 4. **Endpoint `/insert-tasks`**: ✔️
 5. **Endpoint `/get-tasks`**: ✔️
-6. **Salva nome do computador no Firestore**: ✔️
-7. **Testes unitários com Testing Library**: ✔️
-8. **README com passo a passo**: ✔️
+6. **Endpoint `/update-task/:id`**: ✔️
+7. **Endpoint `/delete-task/:id`**: ✔️
+8. **Salva nome do computador no Firestore**: ✔️
+9. **Testes unitários com Testing Library**: ✔️
+10. **README com passo a passo**: ✔️
 
 ---
 
@@ -77,17 +81,6 @@ npm install
 npm start
 ```
 O backend estará disponível em `http://localhost:8085`.
-
-#### d) Teste os endpoints
-
-- **Inserir tarefas:**
-  ```bash
-  curl -X POST -H "Content-Type: application/json" -d '[{"description":"Criar Login","responsable":"bruno","status":"done"}]' http://localhost:8085/insert-tasks
-  ```
-- **Listar tarefas:**
-  ```bash
-  curl http://localhost:8085/get-tasks
-  ```
 
 ---
 
@@ -152,21 +145,48 @@ kanban-todo/
 
 ---
 
-## Detalhes de Implementação
+## Endpoints da API
 
-### **Backend**
+### **POST `/insert-tasks`**
+Cadastra uma ou mais tarefas. O backend adiciona automaticamente o campo `computer` com o nome do computador que fez o cadastro.
 
-- **POST `/insert-tasks`**: Recebe um array de tarefas, adiciona o campo `computer` com o nome do computador (usando `os.hostname()`), salva no Firestore e retorna sucesso.
-- **GET `/get-tasks`**: Retorna todas as tarefas cadastradas no Firestore, incluindo o campo `computer`.
+**Exemplo:**
+```bash
+curl -X POST -H "Content-Type: application/json" -d '[{"description":"Criar Login","responsable":"bruno","status":"done"}]' http://localhost:8085/insert-tasks
+```
 
-### **Frontend**
+---
 
-- **Kanban Board**: Exibe tarefas em colunas "A Fazer", "Fazendo" e "Finalizado", com drag-and-drop.
-- **TaskDialog**: Modal para criar/editar tarefas, com campos controlados.
-- **KanbanCard**: Card de tarefa com botões de editar e deletar.
-- **KanbanColumn**: Coluna do Kanban, recebe tarefas por status.
-- **Integração com backend**: Usa `fetch` para buscar e cadastrar tarefas.
-- **Testes**: Cobrem renderização, interações e integração dos componentes principais.
+### **GET `/get-tasks`**
+Retorna todas as tarefas cadastradas.
+
+**Exemplo:**
+```bash
+curl http://localhost:8085/get-tasks
+```
+
+---
+
+### **PUT `/update-task/:id`**
+Atualiza uma tarefa existente pelo seu `id`.  
+No corpo da requisição, envie os campos a serem atualizados: `description`, `responsable`, `status`, `color`.
+
+**Exemplo:**
+```bash
+curl -X PUT -H "Content-Type: application/json" \
+  -d '{"description":"Atualizado","responsable":"bruno","status":"done","color":"#1976d2"}' \
+  http://localhost:8085/update-task/ID_DA_TAREFA
+```
+
+---
+
+### **DELETE `/delete-task/:id`**
+Remove uma tarefa pelo seu `id`.
+
+**Exemplo:**
+```bash
+curl -X DELETE http://localhost:8085/delete-task/ID_DA_TAREFA
+```
 
 ---
 
